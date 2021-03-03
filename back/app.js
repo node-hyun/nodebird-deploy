@@ -29,8 +29,16 @@ db.sequelize.sync()
     })
     .catch("error ::::: ", console.error)
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(morgan('combined'));
+    app.use(hpp());
+    app.use(helmet());
+} else {
+    app.use(organ('dev'));
+}
+
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'nodebird.com'],
     credentials: true,
 }));
 
