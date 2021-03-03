@@ -21,6 +21,7 @@ const morgan = require('morgan');
 const hpp = require('hpp');
 const helmet = require('helmet');
 
+const prod = process.env.NODE_ENV === 'production';
 
 dotenv.config();
 // passport index.js 에 설정한것을 익스프레스에 적용
@@ -58,7 +59,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 app.get('/', (req, res) => {
     res.send("hello express");
