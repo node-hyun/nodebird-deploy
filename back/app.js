@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(hpp());
     app.use(helmet());
 } else {
-    app.use(organ('dev'));
+    app.use(morgan('dev'));
 }
 
 app.use(cors({
