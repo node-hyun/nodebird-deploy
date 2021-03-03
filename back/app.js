@@ -72,7 +72,7 @@ app.use('/search', searchRouter);
 app.use('/hashtag', hashtagRouter);
 
 
-app.listen(3065, () => {
+app.listen(prod ? process.env.port : 3065, () => {
     console.log("Ecpress Server is Excuting");
 });
 
