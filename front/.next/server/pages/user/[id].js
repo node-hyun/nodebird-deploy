@@ -1,7 +1,7 @@
 module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
-/******/ 	var installedModules = require('../ssr-module-cache.js');
+/******/ 	var installedModules = require('../../ssr-module-cache.js');
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -458,14 +458,6 @@ const AppLayout = ({
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("RNiq");
-
-
-/***/ }),
-
 /***/ "284h":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -746,6 +738,14 @@ function formatUrl(urlObj) {
   search = search.replace('#', '%23');
   return `${protocol}${host}${pathname}${search}${hash}`;
 }
+
+/***/ }),
+
+/***/ 7:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("Qrvq");
+
 
 /***/ }),
 
@@ -1935,7 +1935,7 @@ module.exports = require("next/dist/next-server/lib/router-context.js");
 
 /***/ }),
 
-/***/ "RNiq":
+/***/ "Qrvq":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1943,22 +1943,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return getServerSideProps; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("1zst");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("xnum");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_PostForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("ecW4");
-/* harmony import */ var _components_PostCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("kduo");
-/* harmony import */ var _reducers_post__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("p+NB");
-/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("LAVF");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("h74D");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _store_configureStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("AQn3");
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("1fKG");
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("zr5I");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("Exp3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("h74D");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("Exp3");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("1fKG");
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("xnum");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("4Q3z");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("zr5I");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _reducers_post__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("p+NB");
+/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("LAVF");
+/* harmony import */ var _components_PostCard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("kduo");
+/* harmony import */ var _store_configureStore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("AQn3");
+/* harmony import */ var _components_AppLayout__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("1zst");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("F5FC");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__);
 
@@ -1976,93 +1977,119 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const Home = () => {
+const User = () => {
+  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useDispatch"])();
+  const router = Object(next_router__WEBPACK_IMPORTED_MODULE_5__["useRouter"])();
   const {
-    me
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useSelector"])(state => state.user);
-  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useDispatch"])();
+    id
+  } = router.query;
   const {
     mainPosts,
     hasMorePosts,
-    loadPostsLoading,
-    addPostDone,
-    removePostDone
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useSelector"])(state => state.post);
+    loadUserPostsLoading
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(state => state.post);
   const {
-    followError,
-    unfollowError
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useSelector"])(state => state.user); // useEffect(() => {
-  //     if (addPostDone){
-  //     }
-  // }, [addPostDone]);
-
-  if (followError) {
-    alert("followError : " + followError);
-  }
-
-  if (unfollowError) {
-    alert("unfollowError : " + unfollowError);
-  }
+    userInfo
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["useSelector"])(state => state.user); // useEffect(() => {
+  //     dispatch({
+  //         type: LOAD_USER_REQUEST,
+  //         data: id,
+  //     });
+  //     dispatch({
+  //         type: LOAD_USER_POSTS_REQUEST,
+  //         data: id,
+  //     });
+  //     dispatch({
+  //         type: LOAD_MY_INFO_REQUEST,
+  //     });
+  //     console.log("userInfo: ", userInfo);
+  // }, [])
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    function onScroll() {
-      // console.log(window.scrollY + document.documentElement.clientHeight, document.documentElement.scrollHeight);
-      if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 300) {
-        // console.log("화면이 바닥에 도달했습니다.");
-        if (hasMorePosts && !loadPostsLoading) {
-          var _mainPosts;
-
-          console.log("화면이 바닥에 도달 + 포스팅 추가!!"); // mainPosts 배열의 개수 - 1이 마지막 요소의 인덱스 번호가 되므로 다음과 같이 indec 번호를 가져 온다.
-
-          const lastId = (_mainPosts = mainPosts[mainPosts.length - 1]) === null || _mainPosts === void 0 ? void 0 : _mainPosts.id;
+    const onScroll = () => {
+      if (window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300) {
+        if (hasMorePosts && !loadUserPostsLoading) {
           dispatch({
-            type: _reducers_post__WEBPACK_IMPORTED_MODULE_5__[/* LOAD_POSTS_REQUEST */ "q"],
-            // data: mainPosts[mainPosts.length - 1].id,
-            lastId: lastId // 그냥 lastId만 써도 된다.
-
+            type: _reducers_post__WEBPACK_IMPORTED_MODULE_7__[/* LOAD_USER_POSTS_REQUEST */ "t"],
+            lastId: mainPosts[mainPosts.length - 1] && mainPosts[mainPosts.length - 1].id,
+            data: id
           });
         }
       }
-    }
+    };
 
     window.addEventListener('scroll', onScroll);
     return () => {
       window.removeEventListener('scroll', onScroll);
     };
-  }, [mainPosts, hasMorePosts, loadPostsLoading]);
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])(_components_AppLayout__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"], {
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
-      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("title", {
-        children: "Home"
+  }, [mainPosts.length, hasMorePosts, id]);
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])(_components_AppLayout__WEBPACK_IMPORTED_MODULE_11__[/* default */ "a"], {
+    children: [userInfo && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])(next_head__WEBPACK_IMPORTED_MODULE_4___default.a, {
+      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])("title", {
+        children: [userInfo.nickname, " \uB2D8\uC758 \uAE00"]
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("meta", {
+        name: "description",
+        content: `${userInfo.nickname}님의 게시글`
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("meta", {
+        property: "og:title",
+        content: `${userInfo.nickname}님의 게시글`
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("meta", {
+        property: "og:description",
+        content: `${userInfo.nickname}님의 게시글`
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("meta", {
+        property: "og:image",
+        content: "https://nodebird.com/favicon.ico"
+      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("meta", {
+        property: "og:url",
+        content: `https://nodebird.com/user/${id}`
+      })]
+    }), userInfo ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_2__["Card"], {
+      actions: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])("div", {
+        children: ["\uC9F9\uC9F9", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("br", {}), userInfo.Posts]
+      }, "twit"), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])("div", {
+        children: ["\uD314\uB85C\uC789", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("br", {}), userInfo.Followings]
+      }, "following"), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])("div", {
+        children: ["\uD314\uB85C\uC6CC", /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("br", {}), userInfo.Followers]
+      }, "follower")],
+      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_2__["Card"].Meta, {
+        avatar: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_2__["Avatar"], {
+          children: userInfo.nickname[0]
+        }),
+        title: userInfo.nickname
       })
-    }), me && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_components_PostForm__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"], {}), mainPosts && mainPosts.map(c => {
-      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_components_PostCard__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
-        post: c
-      }, c.id);
-    })]
+    }) : null, mainPosts.map(c => /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_components_PostCard__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"], {
+      post: c
+    }, c.id))]
   });
 };
 
-const getServerSideProps = _store_configureStore__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"].getServerSideProps(async context => {
-  console.log(context.req.headers);
+const getServerSideProps = _store_configureStore__WEBPACK_IMPORTED_MODULE_10__[/* default */ "a"].getServerSideProps(async context => {
   const cookie = context.req ? context.req.headers.cookie : '';
-  axios__WEBPACK_IMPORTED_MODULE_10___default.a.defaults.headers.Cookie = '';
+  axios__WEBPACK_IMPORTED_MODULE_6___default.a.defaults.headers.Cookie = '';
 
   if (context.req && cookie) {
-    axios__WEBPACK_IMPORTED_MODULE_10___default.a.defaults.headers.Cookie = cookie;
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.defaults.headers.Cookie = cookie;
   }
 
   context.store.dispatch({
-    type: _reducers_user__WEBPACK_IMPORTED_MODULE_6__[/* LOAD_MY_INFO_REQUEST */ "o"]
+    type: _reducers_post__WEBPACK_IMPORTED_MODULE_7__[/* LOAD_USER_POSTS_REQUEST */ "t"],
+    data: context.params.id
   });
   context.store.dispatch({
-    type: _reducers_post__WEBPACK_IMPORTED_MODULE_5__[/* LOAD_POSTS_REQUEST */ "q"]
-  }); // 아래의 두줄은success 요청할때까지 기다리라는 뜻
-
-  context.store.dispatch(redux_saga__WEBPACK_IMPORTED_MODULE_9__["END"]);
+    type: _reducers_user__WEBPACK_IMPORTED_MODULE_8__[/* LOAD_MY_INFO_REQUEST */ "o"]
+  });
+  context.store.dispatch({
+    type: _reducers_user__WEBPACK_IMPORTED_MODULE_8__[/* LOAD_USER_REQUEST */ "r"],
+    data: context.params.id
+  });
+  context.store.dispatch(redux_saga__WEBPACK_IMPORTED_MODULE_3__["END"]);
   await context.store.sagaTask.toPromise();
+  console.log('getState', context.store.getState().post.mainPosts);
+  return {
+    props: {}
+  };
 });
-/* harmony default export */ __webpack_exports__["default"] = (Home);
+/* harmony default export */ __webpack_exports__["default"] = (User);
 
 /***/ }),
 
@@ -2554,170 +2581,6 @@ function mitt() {
 
   };
 }
-
-/***/ }),
-
-/***/ "ecW4":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__("cDcd");
-
-// EXTERNAL MODULE: ./hooks/useInput.js
-var useInput = __webpack_require__("3zrx");
-
-// EXTERNAL MODULE: external "styled-components"
-var external_styled_components_ = __webpack_require__("Dtiu");
-var external_styled_components_default = /*#__PURE__*/__webpack_require__.n(external_styled_components_);
-
-// CONCATENATED MODULE: ./components/style/PostFormStyle.js
-
-const TweetForm = /*#__PURE__*/external_styled_components_default.a.form.withConfig({
-  displayName: "PostFormStyle__TweetForm",
-  componentId: "oaelf0-0"
-})(["margin-top:5px;margin-bottom:40px;"]);
-const TweetTextArea = /*#__PURE__*/external_styled_components_default.a.textarea.withConfig({
-  displayName: "PostFormStyle__TweetTextArea",
-  componentId: "oaelf0-1"
-})(["width:100%;height:125px;padding:10px;box-sizing:border-box;border:solid 2px #1E90FF;border-radius:5px;font-size:16px;resize:both;"]); // css
-
-const TweetButton = /*#__PURE__*/external_styled_components_default.a.button.withConfig({
-  displayName: "PostFormStyle__TweetButton",
-  componentId: "oaelf0-2"
-})(["margin-top:1px;margin-left:1px;background:", ";color:", ";font-size:1em;padding:0.25em 1em;border:2px solid skyblue;border-radius:3px;display:flex;justify-content:space-between;float:", ";"], props => props.white ? "white" : "white", props => props.primary ? "palevioletred" : "palevioletred", props => props.right ? "right" : "left");
-// EXTERNAL MODULE: external "react-redux"
-var external_react_redux_ = __webpack_require__("h74D");
-
-// EXTERNAL MODULE: external "antd"
-var external_antd_ = __webpack_require__("Exp3");
-
-// EXTERNAL MODULE: ./reducers/post.js
-var post = __webpack_require__("p+NB");
-
-// EXTERNAL MODULE: external "react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__("F5FC");
-
-// CONCATENATED MODULE: ./components/PostForm.js
-
-
-
-
- // import { ADD_POST_REQUEST, UPLOAD_IMAGES_REQUEST } from '../reducers/post';
-
-
-
-
-
-
-function PostForm() {
-  const dispatch = Object(external_react_redux_["useDispatch"])();
-  const [text, onChangeText, setText] = Object(useInput["a" /* default */])("");
-  const imageInput = Object(external_react_["useRef"])();
-  const {
-    addPostLoading,
-    addPostDone,
-    imagePaths
-  } = Object(external_react_redux_["useSelector"])(state => state.post);
-  Object(external_react_["useEffect"])(() => {
-    if (addPostDone) {
-      setText('');
-    }
-  }, [addPostDone]);
-  const onSubmit = Object(external_react_["useCallback"])(e => {
-    e.preventDefault();
-
-    if (!text || !text.trim()) {
-      return alert('게시글을 작성하세요.');
-    } // 폼데이터 객체에 이미지와 텍스트 정보를 설정 한뒤 
-
-
-    const formData = new FormData();
-    imagePaths.forEach(p => {
-      formData.append('image', p);
-    });
-    formData.append('content', text); // 액션 data로 설정
-
-    dispatch({
-      type: post["e" /* ADD_POST_REQUEST */],
-      data: formData
-    });
-    external_antd_["notification"].open({
-      message: '알림',
-      description: "posting 성공!"
-    });
-  }, [text, imagePaths, addPostDone]);
-  const onClickImageUpload = Object(external_react_["useCallback"])(() => {
-    imageInput.current.click();
-  }, [imageInput.current]);
-  const onChangeImages = Object(external_react_["useCallback"])(e => {
-    console.log('images : ', e.target.files);
-    const imageFormData = new FormData();
-    [].forEach.call(e.target.files, f => {
-      imageFormData.append('image', f);
-    });
-    console.log("imageFormData : ", imageFormData);
-    dispatch({
-      type: post["J" /* UPLOAD_IMAGES_REQUEST */],
-      data: imageFormData
-    });
-  });
-  const onRemoveImage = Object(external_react_["useCallback"])(index => () => {
-    dispatch({
-      type: post["v" /* REMOVE_IMAGE */],
-      data: index
-    });
-  });
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(jsx_runtime_["Fragment"], {
-    children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(TweetForm, {
-      onSubmit: onSubmit,
-      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(TweetTextArea, {
-        rows: 4,
-        value: text,
-        onChange: onChangeText,
-        maxLength: 140,
-        placeholder: "\uC5B4\uB5A4 \uC2E0\uAE30\uD55C \uC77C\uC774 \uC788\uC5C8\uB098\uC694?"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("input", {
-        type: "file",
-        name: "image",
-        multiple: true,
-        hidden: true,
-        ref: imageInput,
-        onChange: onChangeImages
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_antd_["Button"], {
-        onClick: onClickImageUpload,
-        children: "\uC774\uBBF8\uC9C0 \uC5C5\uB85C\uB4DC"
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_antd_["Button"], {
-        type: "submit",
-        style: {
-          float: 'right'
-        },
-        htmlType: "submit",
-        loading: addPostLoading,
-        children: "Tweet"
-      })]
-    }), imagePaths.map((v, i) => /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-      style: {
-        display: 'inline-block'
-      },
-      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("img", {
-        src: `http://127.0.0.1:3065/${v}`,
-        style: {
-          width: '200px'
-        },
-        alt: v
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_antd_["Button"], {
-          onClick: onRemoveImage(i),
-          children: "\uC81C\uAC70"
-        })
-      })]
-    }, v))]
-  });
-}
-
-/* harmony default export */ var components_PostForm = __webpack_exports__["a"] = (PostForm);
 
 /***/ }),
 

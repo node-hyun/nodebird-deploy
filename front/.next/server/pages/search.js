@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -458,14 +458,6 @@ const AppLayout = ({
 
 /***/ }),
 
-/***/ 2:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("RNiq");
-
-
-/***/ }),
-
 /***/ "284h":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -608,6 +600,14 @@ function assign(target, ...searchParamsList) {
   }, []);
   return [value, handler, setter];
 });
+
+/***/ }),
+
+/***/ 4:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__("eOhz");
+
 
 /***/ }),
 
@@ -1935,137 +1935,6 @@ module.exports = require("next/dist/next-server/lib/router-context.js");
 
 /***/ }),
 
-/***/ "RNiq":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return getServerSideProps; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("1zst");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("xnum");
-/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_PostForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("ecW4");
-/* harmony import */ var _components_PostCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("kduo");
-/* harmony import */ var _reducers_post__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("p+NB");
-/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("LAVF");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("h74D");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _store_configureStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("AQn3");
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("1fKG");
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("zr5I");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("Exp3");
-/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("F5FC");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const Home = () => {
-  const {
-    me
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useSelector"])(state => state.user);
-  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useDispatch"])();
-  const {
-    mainPosts,
-    hasMorePosts,
-    loadPostsLoading,
-    addPostDone,
-    removePostDone
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useSelector"])(state => state.post);
-  const {
-    followError,
-    unfollowError
-  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useSelector"])(state => state.user); // useEffect(() => {
-  //     if (addPostDone){
-  //     }
-  // }, [addPostDone]);
-
-  if (followError) {
-    alert("followError : " + followError);
-  }
-
-  if (unfollowError) {
-    alert("unfollowError : " + unfollowError);
-  }
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
-    function onScroll() {
-      // console.log(window.scrollY + document.documentElement.clientHeight, document.documentElement.scrollHeight);
-      if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 300) {
-        // console.log("화면이 바닥에 도달했습니다.");
-        if (hasMorePosts && !loadPostsLoading) {
-          var _mainPosts;
-
-          console.log("화면이 바닥에 도달 + 포스팅 추가!!"); // mainPosts 배열의 개수 - 1이 마지막 요소의 인덱스 번호가 되므로 다음과 같이 indec 번호를 가져 온다.
-
-          const lastId = (_mainPosts = mainPosts[mainPosts.length - 1]) === null || _mainPosts === void 0 ? void 0 : _mainPosts.id;
-          dispatch({
-            type: _reducers_post__WEBPACK_IMPORTED_MODULE_5__[/* LOAD_POSTS_REQUEST */ "q"],
-            // data: mainPosts[mainPosts.length - 1].id,
-            lastId: lastId // 그냥 lastId만 써도 된다.
-
-          });
-        }
-      }
-    }
-
-    window.addEventListener('scroll', onScroll);
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-    };
-  }, [mainPosts, hasMorePosts, loadPostsLoading]);
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])(_components_AppLayout__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"], {
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
-      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("title", {
-        children: "Home"
-      })
-    }), me && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_components_PostForm__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"], {}), mainPosts && mainPosts.map(c => {
-      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_components_PostCard__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
-        post: c
-      }, c.id);
-    })]
-  });
-};
-
-const getServerSideProps = _store_configureStore__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"].getServerSideProps(async context => {
-  console.log(context.req.headers);
-  const cookie = context.req ? context.req.headers.cookie : '';
-  axios__WEBPACK_IMPORTED_MODULE_10___default.a.defaults.headers.Cookie = '';
-
-  if (context.req && cookie) {
-    axios__WEBPACK_IMPORTED_MODULE_10___default.a.defaults.headers.Cookie = cookie;
-  }
-
-  context.store.dispatch({
-    type: _reducers_user__WEBPACK_IMPORTED_MODULE_6__[/* LOAD_MY_INFO_REQUEST */ "o"]
-  });
-  context.store.dispatch({
-    type: _reducers_post__WEBPACK_IMPORTED_MODULE_5__[/* LOAD_POSTS_REQUEST */ "q"]
-  }); // 아래의 두줄은success 요청할때까지 기다리라는 뜻
-
-  context.store.dispatch(redux_saga__WEBPACK_IMPORTED_MODULE_9__["END"]);
-  await context.store.sagaTask.toPromise();
-});
-/* harmony default export */ __webpack_exports__["default"] = (Home);
-
-/***/ }),
-
 /***/ "RmXt":
 /***/ (function(module, exports) {
 
@@ -2554,6 +2423,123 @@ function mitt() {
 
   };
 }
+
+/***/ }),
+
+/***/ "eOhz":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getServerSideProps", function() { return getServerSideProps; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cDcd");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_AppLayout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("1zst");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("xnum");
+/* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_PostForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("ecW4");
+/* harmony import */ var _components_PostCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("kduo");
+/* harmony import */ var _reducers_post__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("p+NB");
+/* harmony import */ var _reducers_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("LAVF");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("h74D");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_redux__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _store_configureStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__("AQn3");
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__("1fKG");
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(redux_saga__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__("zr5I");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__("Exp3");
+/* harmony import */ var antd__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(antd__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__("F5FC");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__);
+
+
+
+
+
+
+
+
+
+
+
+ // import Router from 'next/router';
+
+
+
+
+const Home = () => {
+  const {
+    me
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useSelector"])(state => state.user);
+  const dispatch = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useDispatch"])();
+  const {
+    mainPosts,
+    hasMorePosts,
+    loadPostsLoading
+  } = Object(react_redux__WEBPACK_IMPORTED_MODULE_7__["useSelector"])(state => state.post); // const gotoMain = useCallback(() => {
+  //     Router.replace('/');
+  // }, [searchPostsDone]);
+  // useEffect(() => {
+  //     function onScroll() {
+  //         // console.log(window.scrollY + document.documentElement.clientHeight, document.documentElement.scrollHeight);
+  //         if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 300) {
+  //             // console.log("화면이 바닥에 도달했습니다.");
+  //             if (hasMorePosts && !loadPostsLoading) {
+  //                 console.log("화면이 바닥에 도달 + 포스팅 추가!!");
+  //                 // mainPosts 배열의 개수 - 1이 마지막 요소의 인덱스 번호가 되므로 다음과 같이 indec 번호를 가져 온다.
+  //                 const lastId = mainPosts[mainPosts.length - 1]?.id;
+  //                 dispatch({
+  //                     type: LOAD_POSTS_REQUEST,
+  //                     // data: mainPosts[mainPosts.length - 1].id,
+  //                     lastId: lastId // 그냥 lastId만 써도 된다.
+  //                 });
+  //             }
+  //         }
+  //     }
+  //     window.addEventListener('scroll', onScroll);
+  //     return () => {
+  //         window.removeEventListener('scroll', onScroll);
+  //     }
+  // }, [mainPosts, hasMorePosts, loadPostsLoading]);
+
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsxs"])(_components_AppLayout__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"], {
+    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
+      children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])("title", {
+        children: "Home"
+      })
+    }), me && /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_components_PostForm__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"], {}), mainPosts.map(c => {
+      return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(_components_PostCard__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+        post: c
+      }, c.id);
+    }), searchPostsDone ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_12__["jsx"])(antd__WEBPACK_IMPORTED_MODULE_11__["Button"], {
+      onCLick: gotoMain,
+      children: "go to main"
+    }) : null]
+  });
+};
+
+const getServerSideProps = _store_configureStore__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"].getServerSideProps(async context => {
+  console.log(context.req.headers);
+  const cookie = context.req ? context.req.headers.cookie : '';
+  axios__WEBPACK_IMPORTED_MODULE_10___default.a.defaults.headers.Cookie = '';
+
+  if (context.req && cookie) {
+    axios__WEBPACK_IMPORTED_MODULE_10___default.a.defaults.headers.Cookie = cookie;
+  }
+
+  context.store.dispatch({
+    type: _reducers_user__WEBPACK_IMPORTED_MODULE_6__[/* LOAD_MY_INFO_REQUEST */ "o"]
+  });
+  context.store.dispatch({
+    type: SEARCH_POSTS_REQUEST,
+    data: searchWord
+  }); // 아래의 두줄은success 요청할때까지 기다리라는 뜻
+
+  context.store.dispatch(redux_saga__WEBPACK_IMPORTED_MODULE_9__["END"]);
+  await context.store.sagaTask.toPromise();
+});
+/* harmony default export */ __webpack_exports__["default"] = (Home);
 
 /***/ }),
 
