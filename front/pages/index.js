@@ -65,7 +65,7 @@ const Home = () => {
                 <title>Home</title>
             </Head>
             {me && <PostForm />}
-            {mainPosts.map((c) => {
+            {mainPosts && mainPosts.map((c) => {
                 return (
                     <PostCard key={c.id} post={c} />
                 );
