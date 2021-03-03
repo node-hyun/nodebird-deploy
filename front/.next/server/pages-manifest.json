@@ -1,0 +1,13 @@
+{
+  "/_app": "pages/_app.js",
+  "/hashtag/[tag]": "pages/hashtag/[tag].js",
+  "/": "pages/index.js",
+  "/profile": "pages/profile.js",
+  "/search": "pages/search.js",
+  "/search/post/[search_word]": "pages/search/post/[search_word].js",
+  "/signup": "pages/signup.html",
+  "/user/[id]": "pages/user/[id].js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/404": "pages/404.html"
+}

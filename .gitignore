@@ -1,0 +1,6 @@
+node_modules/
+*.log
+
+
+react-nodebird.pem
+node_modules
