@@ -132,7 +132,7 @@ export default (state = initialState, action) => {
                 draft.logInError = action.error;
                 break;
             case LOG_OUT_REQUEST:
-                draft.logOutUser = action.data.nickname;
+                draft.logOutUser = me.nickname;
                 draft.logOutLoading = true;
                 draft.logOutDone = false;
                 draft.logOutError = null;
