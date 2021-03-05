@@ -18,14 +18,15 @@ const Home = () => {
     const dispatch = useDispatch();
     const { mainPosts, hasMorePosts, loadPostsLoading, addPostDone, removePostDone } = useSelector((state) => state.post);
     const { followError, unfollowError } = useSelector((state) => state.user);
-    
-    // useEffect(() => {
-    //     if (addPostDone){
- 
-    //     }
-    // }, [addPostDone]);
-    
 
+    useEffect(() => {
+        dispatch({
+            type: LOAD_MY_INFO_REQUEST,
+        });
+        dispatch({
+            type: LOAD_POSTS_REQUEST,
+        });
+    }, []);
 
     if (followError) {
         alert("followError : " + followError)
@@ -40,7 +41,7 @@ const Home = () => {
             if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 300) {
                 // console.log("화면이 바닥에 도달했습니다.");
 
-                if (hasMorePosts && !loadPostsLoading ) {
+                if (hasMorePosts && !loadPostsLoading) {
                     console.log("화면이 바닥에 도달 + 포스팅 추가!!");
                     // mainPosts 배열의 개수 - 1이 마지막 요소의 인덱스 번호가 되므로 다음과 같이 indec 번호를 가져 온다.
                     const lastId = mainPosts[mainPosts.length - 1]?.id;
@@ -65,7 +66,7 @@ const Home = () => {
                 <title>Home</title>
             </Head>
             {me && <PostForm />}
-            {mainPosts && mainPosts.map((c) => {
+            {mainPosts.map((c) => {
                 return (
                     <PostCard key={c.id} post={c} />
                 );
@@ -84,12 +85,12 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
         axios.defaults.headers.Cookie = cookie;
     }
 
-    context.store.dispatch({
-        type: LOAD_MY_INFO_REQUEST,
-    });
-    context.store.dispatch({
-        type: LOAD_POSTS_REQUEST,
-    });
+    // context.store.dispatch({
+    //     type: LOAD_MY_INFO_REQUEST,
+    // });
+    // context.store.dispatch({
+    //     type: LOAD_POSTS_REQUEST,
+    // });
 
     // 아래의 두줄은success 요청할때까지 기다리라는 뜻
     context.store.dispatch(END);
