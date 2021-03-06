@@ -9,6 +9,7 @@ const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 // add router for  /user/****
 
 router.patch('/nickname', isLoggedIn, async (req, res, next) => {
+
     try {
         await User.update({
             nickname: req.body.nickname,
@@ -98,7 +99,7 @@ router.delete('/:userId/follow', async (req, res, next) => { // DELETE /user/1/f
 
 // 유저 정보 가져 오기 
 router.get('/', async (req, res, next) => { // GET /user
-    console.log("req.headers  ::", req.headers);
+    console.log("req.headers cookie ::", req.headers);
 
     try {
         if (req.user) {

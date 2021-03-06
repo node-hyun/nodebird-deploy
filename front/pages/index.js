@@ -77,13 +77,25 @@ const Home = () => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(async (context) => {
+    // console.log("context.req.headers : ", context.req.headers);
+    // console.log("cookie check :::::::::::::::::::::::::::::::::::::::::::::::::::");
+    // const cookie = context.req ? context.req.headers.cookie : '';
+    
+    // axios.defaults.headers.Cookie = '';
+
+    // if (context.req && cookie) {
+
+    //     axios.defaults.headers.Cookie = cookie;
+    // }
+
+    console.log('getServerSideProps start');
     console.log(context.req.headers);
     const cookie = context.req ? context.req.headers.cookie : '';
     axios.defaults.headers.Cookie = '';
-
     if (context.req && cookie) {
         axios.defaults.headers.Cookie = cookie;
     }
+
 
     context.store.dispatch({
         type: LOAD_MY_INFO_REQUEST,
