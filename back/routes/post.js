@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 const { User, Post, Image, Comment, Hashtag } = require('../models');
+const fs = require('fs');
+
+const multerS3 = require("multer-s3");
+const AWS = require('aws-sdk');
 
 
 // upload 폴더 설정 
@@ -14,56 +17,73 @@ try {
     fs.mkdirSync('uploads');
 }
 
-// 뮬터 설정 (업로드 폴더, 파일 형식)
-const upload = multer({
-    storage: multer.diskStorage({
-        destination(req, file, done) {
-            done(null, 'uploads');
-        },
-        filename(req, file, done) { // 제로초.png
-            const ext = path.extname(file.originalname); // 확장자 추출(.png)
-            const basename = path.basename(file.originalname, ext); // 제로초
-            done(null, basename + '_' + new Date().getTime() + ext); // 제로초15184712891.png
-        },
-    }),
-    limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
+AWS.config.update({
+    accessKeyId: process.env.S3_ACCESS_KEY_ID,
+    secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+    REGION: 'ap-northeast-2',
 });
+
+const upload = multer({
+    storage: multerS3({
+        s3: new AWS.S3(),
+        bucket: 'nodebird-hyun-s3',
+        key(req, file, cb) {
+            cb(null, `original/$d{Date.now()}_${path.basename(file.originalname)}`)
+        }
+    }),
+    limits: {fileSize: 20 * 1024 * 1024}
+});
+
+// // 뮬터 설정 (업로드 폴더, 파일 형식)
+// const upload = multer({
+//     storage: multer.diskStorage({
+//         destination(req, file, done) {
+//             done(null, 'uploads');
+//         },
+//         filename(req, file, done) { // 제로초.png
+//             const ext = path.extname(file.originalname); // 확장자 추출(.png)
+//             const basename = path.basename(file.originalname, ext); // 제로초
+//             done(null, basename + '_' + new Date().getTime() + ext); // 제로초15184712891.png
+//         },
+//     }),
+//     limits: { fileSize: 20 * 1024 * 1024 }, // 20MB
+// });
 
 
 // make your router 1122
 router.get('/:id', async (req, res, next) => { // GET /user/3
-  try {
-    const fullUserWithoutPassword = await User.findOne({
-      where: { id: req.params.id },
-      attributes: {
-        exclude: ['password']
-      },
-      include: [{
-        model: Post,
-        attributes: ['id'],
-      }, {
-        model: User,
-        as: 'Followings',
-        attributes: ['id'],
-      }, {
-        model: User,
-        as: 'Followers',
-        attributes: ['id'],
-      }]
-    })
-    if (fullUserWithoutPassword) {
-      const data = fullUserWithoutPassword.toJSON();
-      data.Posts = data.Posts.length;
-      data.Followings = data.Followings.length;
-      data.Followers = data.Followers.length;
-      res.status(200).json(data);
-    } else {
-      res.status(404).json('존재하지 않는 사용자입니다.');
+    try {
+        const fullUserWithoutPassword = await User.findOne({
+            where: { id: req.params.id },
+            attributes: {
+                exclude: ['password']
+            },
+            include: [{
+                model: Post,
+                attributes: ['id'],
+            }, {
+                model: User,
+                as: 'Followings',
+                attributes: ['id'],
+            }, {
+                model: User,
+                as: 'Followers',
+                attributes: ['id'],
+            }]
+        })
+        if (fullUserWithoutPassword) {
+            const data = fullUserWithoutPassword.toJSON();
+            data.Posts = data.Posts.length;
+            data.Followings = data.Followings.length;
+            data.Followers = data.Followers.length;
+            res.status(200).json(data);
+        } else {
+            res.status(404).json('존재하지 않는 사용자입니다.');
+        }
+    } catch (error) {
+        console.error(error);
+        next(error);
     }
-  } catch (error) {
-    console.error(error);
-    next(error);
-  }
 });
 
 router.post('/:postId/retweet', async (req, res, next) => { // POST /post/1/retweet
@@ -182,7 +202,7 @@ router.delete('/comment/:PostId/:CommentId', async (req, res, next) => { // DELE
                 UserId: req.user.id,
             },
         });
-        res.status(200).json({ PostId: parseInt(req.params.PostId, 10), CommentId: parseInt(req.params.CommentId, 10)});
+        res.status(200).json({ PostId: parseInt(req.params.PostId, 10), CommentId: parseInt(req.params.CommentId, 10) });
     } catch (error) {
         console.error(error);
         next(error);
@@ -238,7 +258,7 @@ router.delete('/:postId', async (req, res, next) => { // DELETE /post/10
 // 포스팅 하기
 // POST /post
 router.post('/', upload.none(), async (req, res, next) => {
- 
+
 
     try {
         // 해쉬 태그 정보 배열로 추출 하기
@@ -310,7 +330,7 @@ router.post('/', upload.none(), async (req, res, next) => {
 // 이미지 업로드뒤 배열로 응답 
 router.post('/images', upload.array('image'), (req, res, next) => { // POST /post/images
     console.log(req.files);
-    res.json(req.files.map((v) => v.filename));
+    res.json(req.files.map((v) => v.location));
 });
 
 

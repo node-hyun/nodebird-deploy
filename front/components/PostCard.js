@@ -110,7 +110,7 @@ const PostCard = ({ post }) => {
                     </Popover>,
 
                 ]}
-                extra={me.id == post.User.id ? <Button>내가 쓴 글</Button> : post.User.id && < FollowButton post={post} /> }
+                extra={me && me.id == post.User.id ? <Button>내가 쓴 글</Button> : post.User.id && < FollowButton post={post} /> }
 
                 title={post.RetweetId ? `${post.User.nickname}님이 리트윗하셨습니다.` : null}
             >
