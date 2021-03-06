@@ -7,7 +7,7 @@ import { FOLLOW_REQUEST, UNFOLLOW_REQUEST } from '../reducers/user';
 
 const FollowButton = ({ post }) => {
     const dispatch = useDispatch();
-    const { me, followLoading, unfollowLoading } = useSelector((state) => state.user);
+    const { me, followLoading, unfollowLoading, followDone } = useSelector((state) => state.user);
 
     const isFollowing = me?.Followings.find((v) => v.id === post.User.id);
 
@@ -30,10 +30,13 @@ const FollowButton = ({ post }) => {
                 data: post.User.id,
             });
 
-            notification.open({
-                message: '알림',
-                description: "팔로우 성공 !!"
-            })
+            if (followDone){
+                console.log("followDone : ", followDone);
+                notification.open({
+                    message: '알림',
+                    description: "팔로우 성공 !!"
+                })
+            }
 
         }
     }, [isFollowing]);

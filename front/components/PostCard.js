@@ -10,25 +10,21 @@ import FollowButton from './FollowButton';
 import CommentRow from './CommentRow';
 
 // 11 RETWEET_REQUEST 임포트 추가
-import { REMOVE_POST_REQUEST, LIKE_POST_REQUEST, UNLIKE_POST_REQUEST, RETWEET_REQUEST  } from '../reducers/post';
+import { REMOVE_POST_REQUEST, LIKE_POST_REQUEST, UNLIKE_POST_REQUEST, RETWEET_REQUEST } from '../reducers/post';
 import Link from 'next/link';
 import moment from 'moment';
+import user from "../reducers/user";
 
 
 const PostCard = ({ post }) => {
     const dispatch = useDispatch();
     const [commentFormOpened, setCommentFormOpened] = useState(false);
-    const { removePostLoading , removePostDone } = useSelector((state) => state.post);
+    const { removePostLoading, removePostDone } = useSelector((state) => state.post);
     const { me } = useSelector((state) => state.user);
     const id = me && me.id;
     const liked = post.Likers.find((v) => v.id === id);
+    const comments_count = post.Comments.length;
 
-    // useEffect(() => {
-    //     notification.open({
-    //         message: '알림',
-    //         description: "게시글 삭제 성공 !!"
-    //     })
-    // }, [removePostDone]);
 
     const onToggleComment = useCallback(() => {
         setCommentFormOpened((prev) => !prev);
@@ -43,7 +39,7 @@ const PostCard = ({ post }) => {
             message: '알림',
             description: "포스팅 삭제 성공 !!"
         })
-        
+
     }, [removePostDone]);
 
     const onLike = useCallback(() => {
@@ -75,12 +71,12 @@ const PostCard = ({ post }) => {
             type: RETWEET_REQUEST,
             data: post.id,
         });
-    }, [id]);    
+    }, [id]);
 
     return (
         <>
             <Card
-                style={{ width: "100%" ,marginBottom:"10px" }}
+                style={{ width: "100%", marginBottom: "10px" }}
                 cover={post.Images[0] && <PostImages images={post.Images} />}
                 actions={[
 
@@ -90,8 +86,11 @@ const PostCard = ({ post }) => {
                     liked
                         ? <HeartTwoTone twoToneColor="#eb2f96" key="heart" onClick={onUnlike} />
                         : <HeartOutlined key="heart" onClick={onLike} />,
-                    <MessageOutlined key="message" onClick={onToggleComment} />,
-
+                    // <MessageOutlined key="message" onClick={onToggleComment} />  ,
+                    <span>
+                        <MessageOutlined key="message" onClick={onToggleComment} /> ({post.Comments.length})
+                    </span>,
+                    
                     <Popover
                         key="ellipsis"
                         content={(
@@ -109,9 +108,9 @@ const PostCard = ({ post }) => {
                     >
                         <EllipsisOutlined />
                     </Popover>,
-                    
+
                 ]}
-                extra={< FollowButton post={post} />}
+                extra={me.id == post.User.id ? <Button>내가 쓴 글</Button> : post.User.id && < FollowButton post={post} /> }
 
                 title={post.RetweetId ? `${post.User.nickname}님이 리트윗하셨습니다.` : null}
             >
@@ -146,7 +145,7 @@ const PostCard = ({ post }) => {
 
             </Card>
 
-            {commentFormOpened && ( 
+            {commentFormOpened && (
                 <>
                     <CommentForm post={post} />
                     <List
@@ -155,7 +154,7 @@ const PostCard = ({ post }) => {
                         dataSource={post.Comments || []}
                         renderItem={(item) => (
                             <li>
-                                <CommentRow comment={item} PostId = {post.id} />
+                                <CommentRow comment={item} PostId={post.id} />
                             </li>
                         )}
                     />

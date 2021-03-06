@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Avatar, Card, Button, notification } from "antd";
-
+import { UserProfileWrapper } from './style/UserProfileStyle';
 
 // import { useDispatch } from "react-redux";
 // import { logoutAction } from "../reducers/user";
@@ -41,31 +41,33 @@ const UserProfile = ({ setIsLoggedIn }) => {
     }, [logOutDone]);
 
     return (
-        <Card
-            actions={[
-                <div key="twit">
-                    짹짹
+        <UserProfileWrapper>
+            <Card
+                actions={[
+                    <div key="twit">
+                        짹짹
                     <br />
-                    {me.Posts.length}
-                </div>,
-                <div key="following">
-                    팔로잉
+                        {me.Posts.length}
+                    </div>,
+                    <div key="following">
+                        팔로잉
                     <br />
-                    {me.Followings.length}
-                </div>,
-                <div key="follower">
-                    팔로워
+                        {me.Followings.length}
+                    </div>,
+                    <div key="follower">
+                        팔로워
                     <br />
-                    {me.Followers.length}
-                </div>,
-            ]}
-        >
-            <Card.Meta
-                avatar={<Avatar>{me.nickname[0]}</Avatar>}
-                title={me.nickname}
-            />
-            <Button onClick={onLogOut} loading={logOutLoading}>로그아웃</Button>
-        </Card>
+                        {me.Followers.length}
+                    </div>,
+                ]}
+            >
+                <Card.Meta
+                    avatar={<Avatar>{me.nickname[0]}</Avatar>}
+                    title={me.nickname}
+                />
+                <Button onClick={onLogOut} loading={logOutLoading}>로그아웃</Button>
+            </Card>
+        </UserProfileWrapper>
     );
 };
 

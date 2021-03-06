@@ -169,6 +169,7 @@ export default (state = initialState, action) => {
                 break;
             case FOLLOW_FAILURE:
                 draft.followLoading = false;
+                draft.followDone = false;
                 draft.followError = action.error;
                 break;
 
@@ -180,7 +181,6 @@ export default (state = initialState, action) => {
             case UNFOLLOW_SUCCESS:
                 draft.unfollowLoading = false;
                 draft.unfollowDone = true;
-                // draft.me.Followings = draft.me.Followings.filter((v) => v.id !== action.data);
                 console.log("action.data.UserId from reducer : ", action.data.UserId);
                 draft.me.Followings = draft.me.Followings.filter((v) => v.id !== action.data.UserId);
                 break;
@@ -245,7 +245,6 @@ export default (state = initialState, action) => {
                 draft.loadFollowersLoading = false;
                 draft.loadFollowersError = action.error;
                 break;
-            // 언팔로우는 이미 있을수 있음
 
             case REMOVE_FOLLOWER_REQUEST:
                 draft.removeFollowerLoading = true;

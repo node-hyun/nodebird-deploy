@@ -40,12 +40,10 @@ const LoginForm = () => {
             type: LOG_IN_REQUEST,
             data: { email, password },
         });
-
         // notification.open({
         //     message: '알림',
         //     description: `안녕하세요 ${me.nickname} 님 !!`
         // })
-
     }, [email, password, logInDone]);
 
     return (

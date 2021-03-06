@@ -86,7 +86,7 @@ function PostForm() {
                 />
                 <input type="file" name="image" multiple hidden ref={imageInput} onChange={onChangeImages} />
                 <Button onClick={onClickImageUpload}>이미지 업로드</Button>
-                <Button type="submit" style={{ float: 'right' }} htmlType="submit" loading={addPostLoading}>Tweet</Button>
+                <Button type="submit" style={{ float: 'right' }} htmlType="submit" loading={addPostLoading}>짹짹</Button>
 
             </TweetForm>
             {imagePaths.map((v, i) => (
