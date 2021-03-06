@@ -4,7 +4,10 @@ import postSaga from './post';
 import userSaga from './user';
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://127.0.0.1:3065';
+axios.defaults.baseURL = 'http://localhost:3065';
+//axios.defaults.baseURL = 'http://api.nodebird-hyun.shop';
+
+
 axios.defaults.withCredentials = true;
 
 

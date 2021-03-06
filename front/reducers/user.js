@@ -125,6 +125,7 @@ export default (state = initialState, action) => {
                 draft.logInLoading = false;
                 draft.logIndone = true;
                 draft.me = action.data;
+                draft.logOutUser = action.data.nickname;
                 break;
             case LOG_IN_FAILURE:
                 draft.logInLoading = false;
@@ -132,7 +133,6 @@ export default (state = initialState, action) => {
                 draft.logInError = action.error;
                 break;
             case LOG_OUT_REQUEST:
-                draft.logOutUser = draft.me.nickname;
                 draft.logOutLoading = true;
                 draft.logOutDone = false;
                 draft.logOutError = null;

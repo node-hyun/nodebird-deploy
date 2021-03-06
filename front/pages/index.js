@@ -19,14 +19,14 @@ const Home = () => {
     const { mainPosts, hasMorePosts, loadPostsLoading, addPostDone, removePostDone } = useSelector((state) => state.post);
     const { followError, unfollowError } = useSelector((state) => state.user);
 
-    useEffect(() => {
-        dispatch({
-            type: LOAD_MY_INFO_REQUEST,
-        });
-        dispatch({
-            type: LOAD_POSTS_REQUEST,
-        });
-    }, []);
+    // useEffect(() => {
+    //     dispatch({
+    //         type: LOAD_MY_INFO_REQUEST,
+    //     });
+    //     dispatch({
+    //         type: LOAD_POSTS_REQUEST,
+    //     });
+    // }, []);
 
     if (followError) {
         alert("followError : " + followError)
@@ -85,12 +85,12 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) => 
         axios.defaults.headers.Cookie = cookie;
     }
 
-    // context.store.dispatch({
-    //     type: LOAD_MY_INFO_REQUEST,
-    // });
-    // context.store.dispatch({
-    //     type: LOAD_POSTS_REQUEST,
-    // });
+    context.store.dispatch({
+        type: LOAD_MY_INFO_REQUEST,
+    });
+    context.store.dispatch({
+        type: LOAD_POSTS_REQUEST,
+    });
 
     // 아래의 두줄은success 요청할때까지 기다리라는 뜻
     context.store.dispatch(END);

@@ -27,22 +27,22 @@ dotenv.config();
 // passport index.js 에 설정한것을 익스프레스에 적용
 passportConfig();
 
-db.sequelize.sync()
-    .then(() => {
-        console.log("db 연결 성공");
-    })
-    .catch("error ::::: ", console.error)
+// db.sequelize.sync()
+//     .then(() => {
+//         console.log("db 연결 성공");
+//     })
+//     .catch("error ::::: ", console.error)
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(morgan('combined'));
-    app.use(hpp());
-    app.use(helmet());
-} else {
-    app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(morgan('combined'));
+//     app.use(hpp());
+//     app.use(helmet());
+// } else {
+//     app.use(morgan('dev'));
+// }
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'nodebird.com'],
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://3.138.195.42'],
     credentials: true,
 }));
 
@@ -75,7 +75,9 @@ app.use('/search', searchRouter);
 app.use('/hashtag', hashtagRouter);
 
 
-app.listen(prod ? process.env.port : 3065, () => {
+
+// app.listen(prod ? process.env.port : 3065, () => {
+app.listen(80 , () => {
     console.log("Ecpress Server is Excuting");
 });
 

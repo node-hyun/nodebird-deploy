@@ -41,10 +41,10 @@ const LoginForm = () => {
             data: { email, password },
         });
 
-        notification.open({
-            message: '알림',
-            description: `안녕히 가세요 ${logOutUser} 님 !!`
-        })
+        // notification.open({
+        //     message: '알림',
+        //     description: `안녕하세요 ${me.nickname} 님 !!`
+        // })
 
     }, [email, password, logInDone]);
 
