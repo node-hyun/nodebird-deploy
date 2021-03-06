@@ -33,13 +33,13 @@ db.sequelize.sync()
     })
     .catch("error ::::: ", console.error)
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(morgan('combined'));
-    app.use(hpp());
-    app.use(helmet());
-} else {
-    app.use(morgan('dev'));
-}
+// if (process.env.NODE_ENV === 'production') {
+//     app.use(morgan('combined'));
+//     app.use(hpp());
+//     app.use(helmet());
+// } else {
+//     app.use(morgan('dev'));
+// }
 
 app.use(cors({
     origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://nodebird-hyun.shop'],
@@ -76,8 +76,8 @@ app.use('/hashtag', hashtagRouter);
 
 
 
-// app.listen(prod ? process.env.port : 3065, () => {
-app.listen(80 , () => {
+app.listen(prod ? process.env.port : 3065, () => {
+// app.listen(80 , () => {
     console.log("Ecpress Server is Excuting");
 });
 
