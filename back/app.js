@@ -5,6 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
+dotenv.config();
 // 쿠키 파서 임포트
 const cookieParser = require('cookie-parser');
 // 세션 임포트
@@ -23,7 +24,6 @@ const helmet = require('helmet');
 
 const prod = process.env.NODE_ENV === 'production';
 
-dotenv.config();
 // passport index.js 에 설정한것을 익스프레스에 적용
 passportConfig();
 
