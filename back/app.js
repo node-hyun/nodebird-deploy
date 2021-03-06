@@ -56,6 +56,9 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE_SECRET,
+    cookie: {
+        domain: process.env.NODE_ENV === 'production' && '.nodebird-hyun.shoop'
+    },
 }));
 app.use(passport.initialize());
 app.use(passport.session());
