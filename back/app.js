@@ -61,7 +61,13 @@ app.use(session({
     },
 }));
 app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.session({
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        domain: process.env.NODE_ENV === 'production' && '.nodebird-hyun.com'
+    },
+}));
 
 app.get('/', (req, res) => {
     res.send("hello express");
@@ -80,7 +86,7 @@ app.use('/hashtag', hashtagRouter);
 
 
 app.listen(prod ? process.env.port : 3065, () => {
-// app.listen(80 , () => {
+    // app.listen(80 , () => {
     console.log("Ecpress Server is Excuting");
 });
 
