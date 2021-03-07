@@ -331,7 +331,7 @@ router.post('/', upload.none(), async (req, res, next) => {
 router.post('/images', upload.array('image'), (req, res, next) => { // POST /post/images
     console.log(req.files);
     // res.json(req.files.map((v) => v.location));
-    res.json(req.files.map((v) => v.location.replace(/\/origianl\//,'/thumb/')));
+    res.json(req.files.map((v) => v.location.replace(/\/original\//,'/thumb/')));
 });
 
 
