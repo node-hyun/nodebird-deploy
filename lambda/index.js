@@ -9,7 +9,7 @@ const sharp = require('sharp');
 // s3 객체 생성 하기 , 이미지 리사이징을 위해 필요
 const s3 = new AWS.S3();
 
-exports.handler = (event, context, callback) => {
+exports.handler = async (event, context, callback) => {
     // 이벤트로부터 s3 버킷 정보 얻어 오기 
     const Bucket = event.Records[0].s3.bucket.name;
     // 이벤트로부터 s3 파일 키 정보 얻어 오기 
