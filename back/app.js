@@ -52,22 +52,17 @@ app.use(express.urlencoded({ extended: true }));
 // 쿠키 설정 등록
 app.use(cookieParser(process.env.COOKIE_SECRET));
 // 세션 설정 등록
+console.log("process.env.NODE_ENV : ", process.env.NODE_ENV);
 app.use(session({
     saveUninitialized: false,
     resave: false,
     secret: process.env.COOKIE_SECRET,
     cookie: {
-        domain: process.env.NODE_ENV === 'production' && '.nodebird-hyun.shoop'
+        domain: process.env.NODE_ENV === 'production' && '.nodebird-hyun.shop'
     },
 }));
 app.use(passport.initialize());
-app.use(passport.session({
-    saveUninitialized: false,
-    resave: false,
-    cookie: {
-        domain: process.env.NODE_ENV === 'production' && '.nodebird-hyun.com'
-    },
-}));
+app.use(passport.session());
 
 app.get('/', (req, res) => {
     res.send("hello express");
@@ -86,7 +81,7 @@ app.use('/hashtag', hashtagRouter);
 
 
 app.listen(prod ? process.env.port : 3065, () => {
-    // app.listen(80 , () => {
+// app.listen(80 , () => {
     console.log("Ecpress Server is Excuting");
 });
 
