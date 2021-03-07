@@ -23,7 +23,7 @@ exports.handler = async (event, context, callback) => {
     // const ext = Key.split('.')[Key.split('.').length-1];
     const ext = Key.split('.')[Key.split('.').length-1].toLowerCase();
 
-    const requireFormat = ext === 'jpg' ? 'jpeg' : ext;
+    const requiredFormat = ext === 'jpg' ? 'jpeg' : ext;
     console.log('filename', filename, 'ext', ext);
 
     try {
