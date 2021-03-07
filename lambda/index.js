@@ -4,7 +4,7 @@
 // aws 모듈 리콰이어 , s3객체를 생성하는데 필요
 const AWS = require('aws-sdk');
 // sharp 모듈 리콰이어 , 이미지 리사이징에 필요
-const sharp = require('sharp');
+const Sharp = require('sharp');
 
 // s3 객체 생성 하기 , 이미지 리사이징을 위해 필요
 const s3 = new AWS.S3();
@@ -35,7 +35,7 @@ exports.handler = async (event, context, callback) => {
 
         // sharp(이미지 배열).resize().toFormat().toBuffer() 으로 이미지 리사이징 하기
         // + 버퍼 단위의 데이터로 바꾼뒤 resizedImage 객체에 저장 하기 
-        const resizedImage = await ShadowRoot(s3Object.Body)
+        const resizedImage = await Sharp(s3Object.Body)
             .resize(200,200, {fit: 'inside'})
             .toFormat(requiredFormat)
             .toBuffer();
