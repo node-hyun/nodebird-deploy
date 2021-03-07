@@ -2,7 +2,7 @@
 // 람다 함수를 만들어 보자
 
 // aws 모듈 리콰이어 , s3객체를 생성하는데 필요
-const AWS = require('AWS-SDK');
+const AWS = require('aws-sdk');
 // sharp 모듈 리콰이어 , 이미지 리사이징에 필요
 const sharp = require('sharp');
 
