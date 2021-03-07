@@ -330,7 +330,8 @@ router.post('/', upload.none(), async (req, res, next) => {
 // 이미지 업로드뒤 배열로 응답 
 router.post('/images', upload.array('image'), (req, res, next) => { // POST /post/images
     console.log(req.files);
-    res.json(req.files.map((v) => v.location));
+    // res.json(req.files.map((v) => v.location));
+    res.json(req.files.map((v) => v.location.replace(/\/origianl\//,'/thumb/')));
 });
 
 
