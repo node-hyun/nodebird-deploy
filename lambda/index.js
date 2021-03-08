@@ -7,7 +7,7 @@ const AWS = require('aws-sdk');
 const Sharp = require('sharp');
 
 // s3 객체 생성 하기 , 이미지 리사이징을 위해 필요
-const s3 = new AWS.S3({region: 'use-east-2'});
+const s3 = new AWS.S3({region: 'us-east-2'});
 
 exports.handler = async (event, context, callback) => {
     // 이벤트로부터 s3 버킷 정보 얻어 오기 
