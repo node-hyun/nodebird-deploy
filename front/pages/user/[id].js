@@ -17,7 +17,7 @@ const User = () => {
     const router = useRouter();
     const { id } = router.query;
     const { mainPosts, hasMorePosts, loadUserPostsLoading } = useSelector((state) => state.post);
-    const { userInfo } = useSelector((state) => state.user);
+    const { userInfo, me } = useSelector((state) => state.user);
 
     // useEffect(() => {
     //     dispatch({
@@ -71,7 +71,7 @@ const User = () => {
                 </Head>
             }
 
-            {userInfo
+            {userInfo && userInfo.id !== me?.id 
                 ? (
                     <Card
                         actions={[

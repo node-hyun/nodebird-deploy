@@ -3,7 +3,7 @@ import useInput from '../hooks/useInput';
 import { TweetForm, TweetButton, TweetTextArea } from "./style/PostFormStyle.js";
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, notification } from "antd";
-// import { ADD_POST_REQUEST, UPLOAD_IMAGES_REQUEST } from '../reducers/post';
+
 import { ADD_POST_REQUEST, UPLOAD_IMAGES_REQUEST, REMOVE_IMAGE } from '../reducers/post';
 
 

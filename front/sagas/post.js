@@ -49,10 +49,41 @@ import {
     LOAD_USER_POSTS_SUCCESS,
     LOAD_USER_POSTS_FAILURE,
 
+    UPDATE_POST_REQUEST,
+    UPDATE_POST_SUCCESS,
+    UPDATE_POST_FAILURE ,
+
+
 } from '../reducers/post';
 import { ADD_POST_TO_ME, REMOVE_POST_OF_ME } from '../reducers/user';
 
+
 // add your api 1122
+function updatePostAPI(data) {
+    return axios.put(`/post/${data.postId}/update`, data);
+}
+
+function* updatePost(action) {
+    try {
+        const result = yield call(updatePostAPI, action.data);
+        console.log("result for update post : ", result);
+
+        yield put({
+            type: UPDATE_POST_SUCCESS,
+            data: result.data
+        });
+
+    } catch (err) {
+        console.error(err);
+        yield put({
+            type: UPDATE_POST_FAILURE,
+            data: err.response.data,
+        });
+    }
+}
+
+
+
 function loadUserPostsAPI(data, lastId) {
     return axios.get(`/user/${data}/posts?lastId=${lastId || 0}`);
 }
@@ -376,6 +407,10 @@ function* watchLoadUserPosts() {
     yield throttle(5000, LOAD_USER_POSTS_REQUEST, loadUserPosts);
 }
 
+function* watchUpdatePost() {
+    yield throttle(5000, UPDATE_POST_REQUEST, updatePost)
+}
+
 export default function* postSaga() {
     yield all([
         fork(watchAddPost),
@@ -390,6 +425,6 @@ export default function* postSaga() {
         fork(watchSearchPosts),
         fork(watchLoadHashtagPosts),
         fork(watchLoadUserPosts),
-
+        fork (watchUpdatePost),
     ]);
 }

@@ -9,6 +9,10 @@ export const initialState = {
     addPostDone: false,
     addPostError: null,
 
+    updatePostLoading:false,
+    updatePostDone:false,
+    updatePostError:null,
+
     addCommentLoading: false,
     addCommentDone: false,
     addCommentError: null,
@@ -63,6 +67,11 @@ export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST';
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS';
 export const ADD_COMMENT_FAILURE = 'ADD_COMMENT_FAILURE';
 
+// 포스트 업데이트
+export const UPDATE_POST_REQUEST = 'UPDATE_POST_REQUEST';
+export const UPDATE_POST_SUCCESS = 'UPDATE_POST_SUCCESS';
+export const UPDATE_POST_FAILURE = 'UPDATE_POST_FAILURE';
+
 export const REMOVE_POST_REQUEST = 'REMOVE_POST_REQUEST';
 export const REMOVE_POST_SUCCESS = 'REMOVE_POST_SUCCESS';
 export const REMOVE_POST_FAILURE = 'REMOVE_POST_FAILURE';
@@ -100,6 +109,7 @@ export const LOAD_USER_POSTS_REQUEST = 'LOAD_USER_POSTS_REQUEST';
 export const LOAD_USER_POSTS_SUCCESS = 'LOAD_USER_POSTS_SUCCESS';
 export const LOAD_USER_POSTS_FAILURE = 'LOAD_USER_POSTS_FAILURE';
 
+
 export default (state = initialState, action) => {
     return produce(state, (draft) => {
         switch (action.type) {
@@ -118,6 +128,23 @@ export default (state = initialState, action) => {
             case ADD_POST_FAILURE:
                 draft.addPostLoading = false;
                 draft.addPostError = action.error;
+                break;
+
+            case UPDATE_POST_REQUEST:
+                draft.updatePostLoading = true;
+                draft.updatePostDone = false;
+                draft.updatePostError = null;
+                break;
+            case UPDATE_POST_SUCCESS:
+                const postForUpdate = draft.mainPosts.find((v) => v.id === action.data.id);
+                console.log("postForUpdate : ", postForUpdate);
+                postForUpdate.content = action.data.content
+                draft.updatePostLoading = false;
+                draft.updatePostDone = true;
+                break;
+            case UPDATE_POST_FAILURE:
+                draft.updatePostLoading = false;
+                draft.updatePostError = action.error;
                 break;
 
             case ADD_COMMENT_REQUEST:

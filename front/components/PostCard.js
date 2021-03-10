@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { RetweetOutlined, HeartTwoTone, HeartOutlined, MessageOutlined, EllipsisOutlined } from '@ant-design/icons';
-import { Card, Avatar, List, Comment, Popover, Button, notification } from 'antd';
+import { Card, Avatar, List, Comment, Popover, Button, notification, Modal } from 'antd';
 // 컴퍼넌트 임포트
 import CommentForm from './CommentForm';
 import PostImages from "./PostImages";
@@ -10,10 +10,12 @@ import FollowButton from './FollowButton';
 import CommentRow from './CommentRow';
 
 // 11 RETWEET_REQUEST 임포트 추가
-import { REMOVE_POST_REQUEST, LIKE_POST_REQUEST, UNLIKE_POST_REQUEST, RETWEET_REQUEST } from '../reducers/post';
+import { REMOVE_POST_REQUEST, LIKE_POST_REQUEST, UNLIKE_POST_REQUEST, RETWEET_REQUEST, UPDATE_POST_REQUEST } from '../reducers/post';
 import Link from 'next/link';
 import moment from 'moment';
 import user from "../reducers/user";
+
+import UpdatePostModal from './modal/UpdatePostModal';
 
 
 const PostCard = ({ post }) => {
@@ -24,7 +26,11 @@ const PostCard = ({ post }) => {
     const id = me && me.id;
     const liked = post.Likers.find((v) => v.id === id);
     const comments_count = post.Comments.length;
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
 
     const onToggleComment = useCallback(() => {
         setCommentFormOpened((prev) => !prev);
@@ -79,18 +85,14 @@ const PostCard = ({ post }) => {
                 style={{ width: "100%", marginBottom: "10px" }}
                 cover={post.Images[0] && <PostImages images={post.Images} />}
                 actions={[
-
-                    // 22 버튼에 이벤트 걸기 <RetweetOutlined key="retweet" />,
                     <RetweetOutlined key="retweet" onClick={onRetweet} />,
-
                     liked
                         ? <HeartTwoTone twoToneColor="#eb2f96" key="heart" onClick={onUnlike} />
                         : <HeartOutlined key="heart" onClick={onLike} />,
-                    // <MessageOutlined key="message" onClick={onToggleComment} />  ,
                     <span>
                         <MessageOutlined key="message" onClick={onToggleComment} /> ({post.Comments.length})
                     </span>,
-                    
+
                     <Popover
                         key="ellipsis"
                         content={(
@@ -98,7 +100,7 @@ const PostCard = ({ post }) => {
                                 {id && post.User.id === id
                                     ? (
                                         <>
-                                            <Button>수정</Button>
+                                            { !post.Retweet && <Button onClick={showModal}>수정</Button>}
                                             <Button type="danger" loading={removePostLoading} onClick={onRemovePost}>삭제</Button>
                                         </>
                                     )
@@ -110,14 +112,11 @@ const PostCard = ({ post }) => {
                     </Popover>,
 
                 ]}
-                extra={me && me.id == post.User.id ? <Button>내가 쓴 글</Button> : post.User.id && < FollowButton post={post} /> }
+                extra={me && me.id == post.User.id ? <Button>내가 쓴 글</Button> : post.User.id && < FollowButton post={post} />}
 
                 title={post.RetweetId ? `${post.User.nickname}님이 리트윗하셨습니다.` : null}
             >
-                {/* <Card.Meta
-                    avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
-                    description={<PostCardContent postData={post.content} />}
-                /> */}
+
 
                 {post.RetweetId && post.Retweet
                     ? (
@@ -160,8 +159,7 @@ const PostCard = ({ post }) => {
                     />
                 </>
             )}
-
-
+            <UpdatePostModal postId={post.id} visible={isModalVisible} setIsModalVisible={setIsModalVisible} />
         </>
     );
 };
